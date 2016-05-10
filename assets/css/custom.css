@@ -1,0 +1,31 @@
+﻿@function randomBokeh($size: 100, $spread: 3) {
+  $randomColor: rgba(220, random()*255 + 80, random()*155 + 200, random());
+  $singleBokeh: radial-gradient(random()*$size+px at random()*$size*$spread+px random()*$size*$spread+px, $randomColor, $randomColor 96%, transparent);
+  @return $singleBokeh;
+}
+
+@function gimmeBokehs($howMany: 10, $size: 100, $spread: 3) {
+  $bgList: ();
+  @for $i from 1 through $howMany { 
+    $bgList: append($bgList, randomBokeh($size, $spread), comma);
+  }
+  @return $bgList;
+}
+
+
+.bokehs {
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  mix-blend-mode: screen;
+  filter: sepia(.6) opacity(.3);
+  background: gimmeBokehs(120, 60, 20);
+} 
+
+.pattern {
+    background:
+linear-gradient(135deg, #708090 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px),
+linear-gradient(225deg, #708090 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
+background-color:#708090;
+background-size: 64px 128px
+}
